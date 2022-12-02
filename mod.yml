@@ -1,0 +1,8 @@
+title: 60s Random Stats
+description: This mod will force you into a different drive form every 15 seconds, including anti-form! 
+assets:
+#Lua Scripts
+- name: scripts/formroulette.lua
+  method: copy
+  source:
+  - name: formroulette.lua
