@@ -1,5 +1,5 @@
-title: 60s Random Stats
-description: This mod will force you into a different drive form every 15 seconds, including anti-form! 
+title: Form Roulette
+description: This mod will force you into a different drive form if you're in base form. Work on this mod is still being made, so expect an update soon!
 assets:
 #Lua Scripts
 - name: scripts/formroulette.lua
