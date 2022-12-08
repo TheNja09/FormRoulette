@@ -38,7 +38,7 @@ function Events(M,B,E) --Check for Map, Btl, and Evt
 end
 
 function Cheats()
-waitABit = waitABit - 1
+WriteFloat(0xFFFFFFFFFFE9AA08, 3)
 	if ReadArray(0x24F5B48) ~= {00, 00, 00, 00} then
 		waitReset = waitReset - 1
 		if waitReset == 0 then
@@ -46,52 +46,26 @@ waitABit = waitABit - 1
 			waitReset = 30
 		end
 	end
-	if waitABit == 2 then
+	if baseTimer == 0 and ReadByte(Save+0x3524) == 0 then
 	chooseDrive = math.random(1,6)
-	elseif waitABit == 1 and ReadByte(Save+0x3524) == 0 then
 		if chooseDrive == 1 then
 		WriteArray(0x24F5B48, {04, 00, 01, 00}) -- Force Valor Form
-		formTimer = 0
-		baseTimer = 78
 		elseif chooseDrive == 2 then
 		WriteArray(0x24F5B48, {04, 00, 02, 00}) -- Force Wisdom Form
-		formTimer = 0
-		baseTimer = 78
 		elseif chooseDrive == 3 then
 		WriteArray(0x24F5B48, {04, 00, 03, 00}) -- Force Limit Form
-		formTimer = 0
-		baseTimer = 78
 		elseif chooseDrive == 4 then
 		WriteArray(0x24F5B48, {04, 00, 04, 00}) -- Force Master Form
-		formTimer = 0
-		baseTimer = 78
 		elseif chooseDrive == 5 then
 		WriteArray(0x24F5B48, {04, 00, 05, 00}) -- Force Final Form
-		formTimer = 0
-		baseTimer = 78
 		elseif chooseDrive == 6 then
 		WriteArray(0x24F5B48, {04, 00, 06, 00}) -- Force Anti Form
-		formTimer = 0
-		baseTimer = 78
 		end
-	elseif waitABit == 0 then
-	waitABit = 980
 	end
-	if ReadByte(Save+0x3524) ~= 0 and formTimer > -900 then
-	formTimer = formTimer - 1
-	end
-	if formTimer == -900 and waitABit == 80 then
-	WriteArray(0x24F5B48, {05, 00, 00, 00}) -- Force Revert
-	formTimer = 0
+	if ReadByte(Save+0x3524) ~= 0 then
+	baseTimer = 78
 	end
 	if ReadByte(Save+0x3524) == 0 and baseTimer > 0 then
 	baseTimer = baseTimer - 1
-	end
-	if baseTimer == 0 and waitABit then
-	waitABit = 3
-	baseTimer = 78
-	end
-	if waitABit < 60 then
-	print(waitABit)
 	end
 end
