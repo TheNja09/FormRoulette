@@ -63,7 +63,7 @@ WriteFloat(0xFFFFFFFFFFE9AA08, 3)
 		end
 	end
 	if ReadByte(Save+0x3524) ~= 0 then
-	baseTimer = 78
+	baseTimer = 100
 	end
 	if ReadByte(Save+0x3524) == 0 and baseTimer > 0 then
 	baseTimer = baseTimer - 1
