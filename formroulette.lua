@@ -46,8 +46,9 @@ WriteFloat(0xFFFFFFFFFFE9AA08, 3)
 			waitReset = 30
 		end
 	end
-	if baseTimer == 2 then
+	if baseTimer == 2 and ReadByte(0x444861) ~= 13 then
 	chooseDrive = math.random(1,6)
+	else chooseDrive = math.random(2,6)
 	end
 	if baseTimer == 1 and ReadByte(Save+0x3524) == 0 and ReadShort(Now+0) ~= 0x0E07 and ReadShort(Now+0) ~= 0x0507 and ReadShort(Now+8) ~= 0x45 and ReadShort(Now+0) ~= 0x1712 then
 		if chooseDrive == 1 then
