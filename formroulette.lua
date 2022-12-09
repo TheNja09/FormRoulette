@@ -1,7 +1,7 @@
 waitABit = 980
 waitReset = 10
 formTimer = 0
-baseTimer = 78
+baseTimer = 101
 function _OnFrame()
     World = ReadByte(Now + 0x00)
     Room = ReadByte(Now + 0x01)
@@ -69,5 +69,8 @@ WriteFloat(0xFFFFFFFFFFE9AA08, 3)
 	end
 	if ReadByte(Save+0x3524) == 0 and baseTimer > 0 then
 	baseTimer = baseTimer - 1
+	end
+	if baseTimer == 0 then
+	baseTimer = 6
 	end
 end
