@@ -46,8 +46,10 @@ WriteFloat(0xFFFFFFFFFFE9AA08, 3)
 			waitReset = 30
 		end
 	end
-	if baseTimer == 0 and ReadByte(Save+0x3524) == 0 then
+	if baseTimer == 2 then
 	chooseDrive = math.random(1,6)
+	end
+	if baseTimer == 1 and ReadByte(Save+0x3524) == 0 then
 		if chooseDrive == 1 then
 		WriteArray(0x24F5B48, {04, 00, 01, 00}) -- Force Valor Form
 		elseif chooseDrive == 2 then
@@ -63,7 +65,7 @@ WriteFloat(0xFFFFFFFFFFE9AA08, 3)
 		end
 	end
 	if ReadByte(Save+0x3524) ~= 0 then
-	baseTimer = 100
+	baseTimer = 101
 	end
 	if ReadByte(Save+0x3524) == 0 and baseTimer > 0 then
 	baseTimer = baseTimer - 1
