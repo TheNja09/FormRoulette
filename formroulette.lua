@@ -38,7 +38,9 @@ function Events(M,B,E) --Check for Map, Btl, and Evt
 end
 
 function Cheats()
-WriteFloat(0xFFFFFFFFFFE9AA08, 3)
+	if ReadFloat(0xFFFFFFFFFFE9AA08) < 2 then
+	WriteFloat(0xFFFFFFFFFFE9AA08, 3)
+	end
 	if ReadArray(0x24F5B48) ~= {00, 00, 00, 00} then
 		waitReset = waitReset - 1
 		if waitReset == 0 then
@@ -46,9 +48,14 @@ WriteFloat(0xFFFFFFFFFFE9AA08, 3)
 			waitReset = 30
 		end
 	end
-	if baseTimer == 2 and ReadByte(0x444861) ~= 13 then
+	if baseTimer == 2 and ReadByte(0x444861) ~= 13 and ReadByte(0x24AA5B6) > 0 then
 	chooseDrive = math.random(1,6)
-	else chooseDrive = math.random(2,6)
+	elseif baseTimer == 2 and ReadByte(0x444861) ~= 13 and ReadByte(0x24AA5B6) == 0 then
+	chooseDrive = math.random(1,5)
+	elseif baseTimer == 2 and ReadByte(0x444861) == 13 and ReadByte(0x24AA5B6) > 0 then
+	chooseDrive = math.random(2,6)
+	elseif baseTimer == 2 and ReadByte(0x444861) == 13 and ReadByte(0x24AA5B6) == 0 then
+	chooseDrive = math.random(2,5)
 	end
 	if baseTimer == 1 and ReadByte(Save+0x3524) == 0 and ReadShort(Now+0) ~= 0x0E07 and ReadShort(Now+0) ~= 0x0507 and ReadShort(Now+8) ~= 0x45 and ReadShort(Now+0) ~= 0x1712 then
 		if chooseDrive == 1 then
