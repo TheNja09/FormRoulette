@@ -76,6 +76,6 @@ function Cheats()
 	baseTimer = baseTimer - 1
 	end
 	if baseTimer == 0 then
-	baseTimer = 6
+	baseTimer = 3
 	end
 end
