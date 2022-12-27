@@ -57,7 +57,7 @@ function Cheats()
 	elseif baseTimer == 2 and ReadByte(0x444861) == 13 and ReadByte(0x24AA5B6) == 0 then
 	chooseDrive = math.random(2,5)
 	end
-	if baseTimer == 1 and ReadByte(Save+0x3524) == 0 and ReadShort(Now+0) ~= 0x0E07 and ReadShort(Now+0) ~= 0x0507 and ReadShort(Now+0) ~= 0x1A12 and ReadShort(Now+0) ~= 0x1712 and ReadByte(Now+0) ~= 0x0A then
+	if baseTimer == 1 and and ReadByte(0x24A96B6) == 0 ReadByte(Save+0x3524) == 0 and ReadShort(Now+0) ~= 0x0E07 and ReadShort(Now+0) ~= 0x0507 and ReadShort(Now+0) ~= 0x1A12 and ReadShort(Now+0) ~= 0x1712 and ReadByte(Now+0) ~= 0x0A then
 		if chooseDrive == 1 then
 		WriteArray(0x24F5B48, {04, 00, 01, 00}) -- Force Valor Form
 		elseif chooseDrive == 2 then
@@ -71,9 +71,6 @@ function Cheats()
 		elseif chooseDrive == 6 then
 		WriteArray(0x24F5B48, {04, 00, 06, 00}) -- Force Anti Form
 		end
-	end
-	if ReadByte(Save+0x3524) ~= 0 then
-	baseTimer = 101
 	end
 	if ReadByte(Save+0x3524) == 0 and baseTimer > 0 then
 	baseTimer = baseTimer - 1
