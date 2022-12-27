@@ -38,6 +38,7 @@ function Events(M,B,E) --Check for Map, Btl, and Evt
 end
 
 function Cheats()
+	WriteByte(0x24A97F6, 96)
 	if ReadFloat(0xFFFFFFFFFFE9AA08) < 2 then
 	WriteFloat(0xFFFFFFFFFFE9AA08, 3)
 	end
