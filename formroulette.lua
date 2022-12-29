@@ -2,6 +2,7 @@ waitABit = 980
 waitReset = 10
 formTimer = 0
 baseTimer = 101
+RevertCheck = 30
 function _OnFrame()
     World = ReadByte(Now + 0x00)
     Room = ReadByte(Now + 0x01)
@@ -49,6 +50,11 @@ function Cheats()
 			waitReset = 30
 		end
 	end
+	if ReadFloat(Slot1+0x1B4) == 0.0 and ReadByte(Save+0x3524) > 0 then
+		WriteByte(0x24F5C38, 5)
+		WriteArray(0x24F5B48, {05, 00, 00, 00})
+		WriteArray(0x24F5B48, {00, 00, 00, 00})
+	end
 	if baseTimer == 2 and ReadByte(0x444861) ~= 13 and ReadByte(0x24AA5B6) > 0 then
 	chooseDrive = math.random(1,6)
 	elseif baseTimer == 2 and ReadByte(0x444861) ~= 13 and ReadByte(0x24AA5B6) == 0 then
@@ -79,4 +85,5 @@ function Cheats()
 	if baseTimer == 0 then
 	baseTimer = 3
 	end
+print(ReadFloat(Slot1+0x1B4))
 end
