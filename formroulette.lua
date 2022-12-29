@@ -85,5 +85,4 @@ function Cheats()
 	if baseTimer == 0 then
 	baseTimer = 3
 	end
-print(ReadFloat(Slot1+0x1B4))
 end
